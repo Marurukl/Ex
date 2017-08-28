@@ -6,7 +6,7 @@ namespace calculator
 	class Calculator
 	{
 	private:
-		int num1, num2;
+		double num1, num2;
 		double result;
 	public:
 		Calculator();
@@ -22,7 +22,13 @@ namespace calculator
 		void TakingFromSquare();//Взятие из под квадратного корня
 		void ErectioToTheSquare();//Возведение к квадрат
 		void OneDivideX();//1/х
-		void ShowMenu();
+		void ShowMenuFirst();
+		void ShowMenuSecond();
+		void RaisingNumberAnyDegree();
+		void SinCosTan();
+		void Log();
+		void Factorial();
+
 		
 	};
 
