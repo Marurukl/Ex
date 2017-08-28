@@ -1,6 +1,7 @@
 #pragma once
 #ifndef Calculator_H
 #define Calculator_H
+#define PI 3.14159265 
 namespace calculator
 {
 	class Calculator
@@ -28,7 +29,9 @@ namespace calculator
 		void SinCosTan();
 		void Log();
 		void Factorial();
-
+		long double fact(int N);
+		
+		
 		
 	};
 

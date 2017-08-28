@@ -14,11 +14,11 @@ namespace calculator
 	}
 	void Calculator::Handler(int number1, int number2) {
 		int key;
-		ShowMenu();
+		ShowMenuFirst();
 		for (;;) {
 			if (kbhit()) {
 				key = getch();
-				std::cout << key;
+				
 
 				if (key == 48) {
 					break;
@@ -26,45 +26,69 @@ namespace calculator
 				else if (key == 27) {
 					num1 = num2 = 0;
 					result = 0;
-					ShowMenu();
+					ShowMenuFirst();
 				}
 				else if (key == 49) {
+					for (;;)
+					{
+						if (kbhit()) {
+							key = getch();
+							if (key == 65) {
+								break;
+							}
+							else if (key == 83) {
+								RaisingNumberAnyDegree();
+								ShowMenuSecond();
+							}
+							else if (key == 68) {
+								SinCosTan();
+								ShowMenuSecond();
+							}
+							else if (key == 70) {
+								Log();
+								ShowMenuSecond();
+							}
+							else if (key == 71) {
+								Factorial();
+								ShowMenuSecond();
+							}
+						}
+					}
 					
-					ShowMenu();
 				}
 				else if (key == 50) {
 					ChangeSignNumber();
-					ShowMenu();
+					ShowMenuFirst();
 				}
 				else if (key == 51) {
 					AdditionNumber();
-					ShowMenu();
+					ShowMenuFirst();
 				}
 				else if (key == 52) {
 					SubtractionNumber();
-					ShowMenu();
+					ShowMenuFirst();
 				}
 				else if (key == 53) {
 					DivisionNumber();
-					ShowMenu();
+					ShowMenuFirst();
 				}
 				else if (key == 54) {
 					MultiplicationNumber();
-					ShowMenu();
+					ShowMenuFirst();
 				}
 				else if (key == 55) {
 					TakingFromSquare();
-					ShowMenu();
+					ShowMenuFirst();
 
 				}
 				else if (key == 56) {
 					ErectioToTheSquare();
-					ShowMenu();
+					ShowMenuFirst();
 
 				}
 				else if (key == 57) {
 					OneDivideX();
-					ShowMenu();
+					ShowMenuFirst();
 
 				}
 			}
@@ -141,9 +165,52 @@ namespace calculator
 		std::cout << "\n" << result;
 		std::cin.get(); std::cin.get();
 	}//1/х
-	void Calculator::ShowMenu() {
+	void Calculator::ShowMenuFirst() {
 		system("cls");
-		std::cout << " 0 - выход \n 1 -	Написать цифру \n  2 - Смена знака у числа на противоположный \n 3 - Сложение \n 4 - Вычитание \n 5 - Деление \n 6 - Умножение \n 7 - Взятие из под квадратного корня \n 8 - Возведение к квадрат \n 9 - 1/х";
+		std::cout << " 0 - выход \n 1 -	2 страница \n  2 - Смена знака у числа на противоположный \n 3 - Сложение \n 4 - Вычитание \n 5 - Деление \n 6 - Умножение \n 7 - Взятие из под квадратного корня \n 8 - Возведение к квадрат \n 9 - 1/х";
 	}
-	
+	void Calculator::ShowMenuSecond() {
+		system("cls");
+		std::cout << " A - назад \n S - Возведение в любую степень \n D - Cos,Sin,Tan \n F - log \n G-Факториал";
+	}
+	void Calculator::RaisingNumberAnyDegree(){
+		SetNumber1();
+		int count;
+		std::cout << "Введите Число для возвеления степени : ";
+		std::cin >> count;
+		for (size_t i = 0; i < count; i++)
+		{
+			num1 *= num1;
+		}
+		result = num1;
+		std::cout << "\n" << num1;
+		std::cin.get(); std::cin.get();
+	}
+	void Calculator::SinCosTan(){
+		int degree;
+		std::cout << "Введите градус : ";
+		std::cin >> degree;
+		std::cout << "Sin = " << sin(degree*PI / 180) << "\nCos = " << cos(degree*PI / 180) <<"\nTan = " << tan(degree*PI / 180);
+		std::cin.get(); std::cin.get();
+	}
+	void Calculator::Log(){
+		double val;
+		result = log(val);
+		std::cout << "Логариф числа : " << result;
+		std::cin.get(); std::cin.get();
+	}
+	long double Calculator::fact(int N)
+	{
+		if (N < 0) 
+			return 0; 
+		if (N == 0) 
+			return 1; 
+		else 
+			return N * fact(N - 1); 
+	}
+	void Calculator::Factorial() {
+		SetNumber1();
+		std::cout << "Логариф числа : " << fact(num1);
+		std::cin.get(); std::cin.get();
+	} 
 }
